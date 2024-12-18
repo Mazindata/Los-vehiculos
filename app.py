@@ -9,9 +9,9 @@ df = pd.read_csv('vehicles_us.csv')
 
 #creating a new column manufacturer by getting the first word from the model column
 df['manufacturer'] = df['model'].apply(lambda x: 
-x.split()[0]
+x.split()[0])
 
-#Creating texrt header above dataframe
+#Creating text header above dataframe
 st.header('Data viewer')
 
 #Displaying dataframe with streamlit
