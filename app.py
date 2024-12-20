@@ -22,24 +22,18 @@ st.header('Data viewer')
 #Displaying dataframe with streamlit
 st.dataframe(df)
 
-st.header('Distribution of Car Prices')
-plt.hist(df['price'], bins=20, color='skyblue', edgecolor='black')
-plt.title('Distribution of Car Prices')
-plt.xlabel('Price')
-plt.ylabel('Frequency')
-plt.xlim(0, 90000)
-plt.show()
+# Bar chart for vehicle types by manufacturers
+vehicle_types = df_vhs['Type'].unique().tolist() st.sidebar.header('Filter for Type Bar Chart:')
+selected_types = st.sidebar.multiselect('Select Vehicle Types to Display', vehicle_types, default='sedan')
 
-st.header('Odometer vs. Selling Price')
-# Plot of Odometer vs. Selling Price
-plt.figure(figsize=(10, 6))
-sns.scatterplot(x=df['odometer'], y=df['price'])
-plt.title('Price vs Odometer (Mileage)')
-plt.xlabel('Odometer (miles)')
-plt.ylabel('Price')
-plt.ylim(0, 100000)
-plt.xlim(0, 200000)
-plt.xticks(range(0, 200001, 20000))
+filtered_types = df_vhs[df_vhs['Type'].isin(selected_types)]
+counts_per_type = filtered_types.groupby(['Manufacturer', 'Type']).size().reset_index(name='Count')
+vehicle_type_bar = px.bar(counts_per_type, x='Manufacturer', y='Count', color='Type', barmode='group', 
+    title='Number of Ads per Vehicle Types by Manufacturer')
+
+conditions = df_vhs['Condition'].unique().tolist()
+st.sidebar.header('Filters for Condition Chart')
+selected_condition = st.sidebar.multiselect('Select Vehicle Conditions to Display',conditions, default='good')
 
 # Render the plot in Streamlit
 st.pyplot(plt)
