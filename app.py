@@ -3,10 +3,11 @@ import scipy.stats
 import streamlit as st
 import time
 import plotly_express as px
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 #Title of the app
 st.title('Used Car Lot Listings')
-
 
 #loading our dataset
 df = pd.read_csv('vehicles_us.csv')
