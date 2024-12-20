@@ -22,23 +22,24 @@ st.header('Data viewer')
 #Displaying dataframe with streamlit
 st.dataframe(df)
 
-# Bar chart for vehicle types by manufacturers
-vehicle_types = df['Type'].unique().tolist() 
-st.sidebar.header('Filter for Type Bar Chart:')
-selected_types = st.sidebar.multiselect('Select Vehicle Types to Display', vehicle_types, default='sedan')
+st.header('Distribution of Car Prices')
+plt.bar(df['price'], bins=20, color='skyblue', edgecolor='black')
+plt.title('Distribution of Car Prices')
+plt.xlabel('Price')
+plt.ylabel('Frequency')
+plt.xlim(0, 90000)
+plt.show()
 
-filtered_types = df[df['Type'].isin(selected_types)]
-counts_per_type = filtered_types.groupby(['Manufacturer', 'Type']).size().reset_index(name='Count')
-vehicle_type_bar = px.bar(counts_per_type, x='Manufacturer', y='Count', color='Type', barmode='group', 
-    title='Number of Ads per Vehicle Types by Manufacturer')
-
-conditions = df['Condition'].unique().tolist()
-st.sidebar.header('Filters for Condition Chart')
-selected_condition = st.sidebar.multiselect('Select Vehicle Conditions to Display',conditions, default='good')
-
-st.plotly_chart(cond_hist)
-st.plotly_chart(vehicle_type_bar)
-st.plotly_chart(price_hist)
+st.header('Odometer vs. Selling Price')
+# Plot of Odometer vs. Selling Price
+plt.figure(figsize=(10, 6))
+sns.scatterplot(x=df['odometer'], y=df['price'])
+plt.title('Price vs Odometer (Mileage)')
+plt.xlabel('Odometer (miles)')
+plt.ylabel('Price')
+plt.ylim(0, 100000)
+plt.xlim(0, 200000)
+plt.xticks(range(0, 200001, 20000))
 
 # Render the plot in Streamlit
 st.pyplot(plt)
