@@ -22,7 +22,7 @@ st.header('Data viewer')
 #Displaying dataframe with streamlit
 st.dataframe(df)
 
-st.title('Odometer vs. Selling Price')
+st.header('Odometer vs. Selling Price')
 # Plot of Odometer vs. Selling Price
 plt.figure(figsize=(10, 6))
 sns.scatterplot(x=df['odometer'], y=df['price'])
