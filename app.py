@@ -23,7 +23,8 @@ st.header('Data viewer')
 st.dataframe(df)
 
 # Bar chart for vehicle types by manufacturers
-vehicle_types = df_vhs['Type'].unique().tolist() st.sidebar.header('Filter for Type Bar Chart:')
+vehicle_types = df_vhs['Type'].unique().tolist() 
+st.sidebar.header('Filter for Type Bar Chart:')
 selected_types = st.sidebar.multiselect('Select Vehicle Types to Display', vehicle_types, default='sedan')
 
 filtered_types = df_vhs[df_vhs['Type'].isin(selected_types)]
@@ -34,6 +35,10 @@ vehicle_type_bar = px.bar(counts_per_type, x='Manufacturer', y='Count', color='T
 conditions = df_vhs['Condition'].unique().tolist()
 st.sidebar.header('Filters for Condition Chart')
 selected_condition = st.sidebar.multiselect('Select Vehicle Conditions to Display',conditions, default='good')
+
+st.plotly_chart(cond_hist)
+st.plotly_chart(vehicle_type_bar)
+st.plotly_chart(price_hist)
 
 # Render the plot in Streamlit
 st.pyplot(plt)
