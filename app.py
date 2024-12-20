@@ -22,6 +22,13 @@ st.header('Data viewer')
 #Displaying dataframe with streamlit
 st.dataframe(df)
 
+plt.hist(df['price'], bins=20, color='skyblue', edgecolor='black')
+plt.title('Distribution of Car Prices')
+plt.xlabel('Price')
+plt.ylabel('Frequency')
+plt.xlim(0, 90000)
+plt.show()
+
 st.header('Odometer vs. Selling Price')
 # Plot of Odometer vs. Selling Price
 plt.figure(figsize=(10, 6))
