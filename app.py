@@ -25,8 +25,8 @@ st.dataframe(df)
 
 st.header('Distribution of Car Prices')
 
-price_bins = pd.cut(df['price'], bins=5, labels=["Low", "Moderate", "High", "Very High", "Premium"])
-
+price_bins = pd.cut(df['price'], bins=[0, 5000, 10000, 15000, float('inf')],
+                    labels=["Low", "Moderate", "High", "Very High"])
 # Count the number of occurrences in each price range
 price_distribution = price_bins.value_counts()
 
