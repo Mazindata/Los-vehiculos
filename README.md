@@ -1,13 +1,9 @@
-<<<<<<< HEAD
-#Los-vehiculos
-=======
 # Creating a Streamlit Web Application to Visualize Vehicle Data
->>>>>>> d4085e94d96926b8b4b9093b06c71b19d305124a
 US Car data listing 1000's of cars by price, condition, year, make &amp; model
 
 ## Project Description
 This project aims to master crucial software engineering tasks through practice, resulting in becoming a more complete and attractive job candidate to potential employers.
-We will manage a virtual environments and develop a web application to the cloud making it accessible to the public.
+We will manage a virtual environments and develop a web application to the cloud making it accessible to the public (https://los-vehiculos.onrender.com/)
 The dataset used for this project is made up of used car sales advertisements.
 
 ### Step 1. Getting started
@@ -34,4 +30,6 @@ The dataset used for this project is made up of used car sales advertisements.
 ### Step 5. Deploy the application to Render
 - To make Streamlit compatible with Render, we need to create two new files: requirements.txt and .streamlit/config.toml.
 - First, we need to create the requirements.txt file. Create this new file in your project folder’s root level. Then, add the project’s required packages.
+https://los-vehiculos.onrender.com/
+
   
