@@ -23,7 +23,7 @@ st.header('Data viewer')
 st.dataframe(df)
 
 st.header('Distribution of Car Prices')
-plt.bar(df['price'], bins=20, color='skyblue', edgecolor='black')
+plt.hist(df['price'], bins=20, color='skyblue', edgecolor='black')
 plt.title('Distribution of Car Prices')
 plt.xlabel('Price')
 plt.ylabel('Frequency')
