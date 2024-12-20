@@ -4,6 +4,8 @@ import streamlit as st
 import time
 import plotly_express as px
 
+#Title of the app
+st.title('Used Car Lot Listings')
 
 
 #loading our dataset
@@ -19,7 +21,21 @@ st.header('Data viewer')
 #Displaying dataframe with streamlit
 st.dataframe(df)
 
-###We want to view distribution of vehicle types by manufacturer
+st.title('Odometer vs. Selling Price')
+# Plot of Odometer vs. Selling Price
+plt.figure(figsize=(10, 6))
+sns.scatterplot(x=df['odometer'], y=df['price'])
+plt.title('Price vs Odometer (Mileage)')
+plt.xlabel('Odometer (miles)')
+plt.ylabel('Price')
+plt.ylim(0, 100000)
+plt.xlim(0, 200000)
+plt.xticks(range(0, 200001, 20000))
+
+# Render the plot in Streamlit
+st.pyplot(plt)
+
+#We want to view distribution of vehicle types by manufacturer
 
 st.header('Vehicle types manufacturer')
 #creating a plotly histogram figure
@@ -27,15 +43,15 @@ fig = px.histogram(df, x='manufacturer', color='type')
 #displaying figure w/ Streamlit
 st.write(fig)
 
-###Histogram of condition vs. model_year
+#Histogram of condition vs. model_year
 
 st.header('Histogram of `condition` vs `model_year`')
 fig = px.histogram(df, x='model_year', color='condition')
 st.write(fig)
 
-###Comparing Price Distribution between manufacturers
+#Comparing Price Distribution between manufacturers
 
-##We need user input for First and Second manufacturer's names. Then filter dataframe to contain only those two manufacturers
+#We need user input for First and Second manufacturer's names. Then filter dataframe to contain only those two manufacturers
 #Creating Plotly histogram
 st.header('Compare price distribution between manufacturers')
 # get a list of car manufacturers
