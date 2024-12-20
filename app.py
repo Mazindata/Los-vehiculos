@@ -6,6 +6,7 @@ import plotly.express as px
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+
 #Title of the app
 st.title('Used Car Lot Listings')
 
@@ -23,6 +24,24 @@ st.header('Data viewer')
 st.dataframe(df)
 
 st.header('Distribution of Car Prices')
+
+price_bins = pd.cut(df['price'], bins=5, labels=["Low", "Moderate", "High", "Very High", "Premium"])
+
+# Count the number of occurrences in each price range
+price_distribution = price_bins.value_counts()
+
+# Plotting
+plt.figure(figsize=(10, 6))
+sns.barplot(x=price_distribution.index, y=price_distribution.values, palette="viridis")
+plt.title('Distribution of Car Prices')
+plt.xlabel('Price Range')
+plt.ylabel('Count of Cars')
+plt.xticks(rotation=45)
+plt.tight_layout()
+
+# Display the plot in Streamlit app
+st.pyplot(plt)
+
 plt.hist(df['price'], bins=20, color='skyblue', edgecolor='black')
 plt.title('Distribution of Car Prices')
 plt.xlabel('Price')
