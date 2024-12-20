@@ -23,16 +23,16 @@ st.header('Data viewer')
 st.dataframe(df)
 
 # Bar chart for vehicle types by manufacturers
-vehicle_types = df_vhs['Type'].unique().tolist() 
+vehicle_types = df['Type'].unique().tolist() 
 st.sidebar.header('Filter for Type Bar Chart:')
 selected_types = st.sidebar.multiselect('Select Vehicle Types to Display', vehicle_types, default='sedan')
 
-filtered_types = df_vhs[df_vhs['Type'].isin(selected_types)]
+filtered_types = df[df['Type'].isin(selected_types)]
 counts_per_type = filtered_types.groupby(['Manufacturer', 'Type']).size().reset_index(name='Count')
 vehicle_type_bar = px.bar(counts_per_type, x='Manufacturer', y='Count', color='Type', barmode='group', 
     title='Number of Ads per Vehicle Types by Manufacturer')
 
-conditions = df_vhs['Condition'].unique().tolist()
+conditions = df['Condition'].unique().tolist()
 st.sidebar.header('Filters for Condition Chart')
 selected_condition = st.sidebar.multiselect('Select Vehicle Conditions to Display',conditions, default='good')
 
