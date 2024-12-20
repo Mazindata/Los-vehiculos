@@ -22,6 +22,7 @@ st.header('Data viewer')
 #Displaying dataframe with streamlit
 st.dataframe(df)
 
+st.header('Distribution of Car Prices')
 plt.hist(df['price'], bins=20, color='skyblue', edgecolor='black')
 plt.title('Distribution of Car Prices')
 plt.xlabel('Price')
