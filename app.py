@@ -47,6 +47,7 @@ plt.title('Distribution of Car Prices')
 plt.xlabel('Price')
 plt.ylabel('Frequency')
 plt.xlim(0, 90000)
+plt.legend()
 plt.show()
 
 st.header('Odometer vs. Selling Price')
